@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchList } from "../../services/api";
+import { fetchTrendingMovies } from "../../services/api";
 import { Link } from "react-router-dom";
 
 const MovieList = () => {
@@ -7,7 +7,7 @@ const MovieList = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await fetchList();
+      const data = await fetchTrendingMovies();
       setMovies(data);
     };
     getData();
