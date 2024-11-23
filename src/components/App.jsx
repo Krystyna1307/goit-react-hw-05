@@ -12,8 +12,7 @@ const App = () => {
   return (
     <div>
       <Navigation />
-      <h2>Trending today</h2>
-      <Routes>
+         <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<MoviesPage />}>
           <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
