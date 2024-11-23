@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { fetchMovieReviews } from "../../services/api";
 
 const MovieReviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetchMovieReviews(movieId).then((data) => setReviews(data.results));
+    const loadReviews = async () => {
+      const data = await fetchMovieReviews(movieId);
+      setReviews(data);
+    };
+    loadReviews();
   }, [movieId]);
 
   return (
@@ -14,15 +19,9 @@ const MovieReviews = () => {
       {reviews.length === 0 ? (
         <p>No reviews available.</p>
       ) : (
-        reviews.map((review) => (
-          <div key={review.id}>
-            <h3>{review.author}</h3>
-            <p>{review.content}</p>
-          </div>
-        ))
+        reviews.map((review) => <p key={review.id}>{review.author}</p>)
       )}
     </div>
   );
 };
-
 export default MovieReviews;

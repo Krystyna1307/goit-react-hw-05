@@ -1,35 +1,24 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-const defaultImg =
-  "https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster";
+import { fetchMovieCast } from "../../services/api";
 
 const MovieCast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    fetchMovieCast(movieId).then((data) => setCast(data.cast));
+    const loadCast = async () => {
+      const data = await fetchMovieCast(movieId);
+      setCast(data);
+    };
+    loadCast();
   }, [movieId]);
 
   return (
     <div>
-      <ul>
-        {cast.map((actor) => (
-          <li key={actor.id}>
-            <img
-              src={
-                movieData.poster_path
-                  ? `https://image.tmdb.org/t/p/w500/${movieData.poster_path}`
-                  : defaultImg
-              }
-              width={250}
-              alt="poster"
-            />
-            <p>{actor.name}</p>
-          </li>
-        ))}
-      </ul>
+      {cast.map((actor) => (
+        <p key={actor.id}>{actor.name}</p>
+      ))}
     </div>
   );
 };

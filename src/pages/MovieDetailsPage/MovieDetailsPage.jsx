@@ -1,24 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Outlet, useParams } from "react-router-dom";
-import s from "./MovieDetailsPage.module.css";
+import { fetchMovieDetails } from "../../services/api";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
+  const [movieDetails, setMovieDetails] = useState(null);
 
   useEffect(() => {
-    if (!movieId) return;
+    const loadMovieDetails = async () => {
+      try {
+        const data = await fetchMovieDetails(movieId);
+        setMovieDetails(data);
+      } catch (error) {
+        console.error("Failed to fetch movie details:", error);
+      }
+    };
+
+    if (movieId) loadMovieDetails();
   }, [movieId]);
+
+  if (!movieDetails) return <p>Loading...</p>;
 
   return (
     <div>
-      <div>Movie details #{movieId}</div>
-      <nav className={s.nav}>
+      <h1>{movieDetails.title}</h1>
+      <p>{movieDetails.overview}</p>
+      <nav>
         <NavLink to="cast">Cast</NavLink>
         <NavLink to="reviews">Reviews</NavLink>
       </nav>
-      <div>
-        <Outlet />
-      </div>
+      <Outlet />
     </div>
   );
 };

@@ -25,8 +25,13 @@ export const searchMovies = async (query) => {
 };
 
 export const fetchMovieDetails = async (movieId) => {
-  const response = await apiClient.get(`/movie/${movieId}`);
-  return response.data;
+  try {
+    const response = await apiClient.get(`/movie/${movieId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+    throw error; // У разі помилки, викидайте її для подальшої обробки.
+  }
 };
 
 export const fetchMovieCast = async (movieId) => {
