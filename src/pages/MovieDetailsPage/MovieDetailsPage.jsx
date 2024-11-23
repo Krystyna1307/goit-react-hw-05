@@ -4,6 +4,7 @@ import s from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
+
   useEffect(() => {
     if (!movieId) return;
   }, [movieId]);

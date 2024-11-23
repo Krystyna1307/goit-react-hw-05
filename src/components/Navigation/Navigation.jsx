@@ -20,10 +20,6 @@ const Navigation = () => {
           </NavLink>
         </nav>
       </header>
-
-      <div>
-        <Outlet />
-      </div>
     </div>
   );
 };
