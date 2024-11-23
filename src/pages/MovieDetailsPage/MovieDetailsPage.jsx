@@ -1,8 +1,13 @@
-import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import s from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
+  const { movieId } = useParams();
+  useEffect(() => {
+    if (!movieId) return;
+  }, [movieId]);
+
   return (
     <div>
       <nav className={s.nav}>

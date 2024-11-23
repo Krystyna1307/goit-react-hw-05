@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import s from "./Navigation.module.css";
 import clsx from "clsx";
 
@@ -20,6 +20,9 @@ const Navigation = () => {
           </NavLink>
         </nav>
       </header>
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 };
