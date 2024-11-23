@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import s from "./MovieList.module.css";
 
 const MovieList = ({ movies }) => {
   return (
-    <div>
-      <ul>
+    <div className={s.wrapper}>
+      <ul className={s.list}>
         {movies.map((movie) => (
           <li key={movie.id}>
             <Link to={`/movies/${movie.id}`}>
