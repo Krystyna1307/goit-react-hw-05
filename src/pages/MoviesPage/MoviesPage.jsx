@@ -1,14 +1,10 @@
 import React from "react";
-import MovieDetailsPage from "../MovieDetailsPage/MovieDetailsPage";
-
-// const handleSubmit = value => {
-//   setSearchParams({ query: value });
-// };
+import { Outlet } from "react-router-dom";
 
 const MoviesPage = () => {
   return (
     <div>
-      <MovieDetailsPage />
+      <Outlet />
     </div>
   );
 };
