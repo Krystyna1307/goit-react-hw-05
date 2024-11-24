@@ -27,6 +27,7 @@ const MovieDetailsPage = () => {
 
   return (
     <div className={s.wrapper}>
+      <button type="submit">← Go back</button>
       <div className={s.part_one}>
         <div className={s.poster}>
           <img
