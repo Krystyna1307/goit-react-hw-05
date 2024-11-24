@@ -43,7 +43,8 @@ const MovieDetailsPage = () => {
 
         <div className={s.details}>
           <h1 className={s.title}>
-            {movieDetails.title}({movieDetails.release_date.slice(0, 4)})
+            {movieDetails.title} &nbsp; ({movieDetails.release_date.slice(0, 4)}
+            )
           </h1>
 
           <p className={s.userScore}>
