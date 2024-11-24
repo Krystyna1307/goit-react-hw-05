@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import { fetchMovieDetails } from "../../services/api";
 import s from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
+  const location = useLocation();
+  console.log(location);
 
   const defaultImg =
     "https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster";
@@ -27,7 +36,8 @@ const MovieDetailsPage = () => {
 
   return (
     <div className={s.wrapper}>
-      <button type="submit">← Go back</button>
+      <Link to={location.state}>← Go back</Link>
+
       <div className={s.part_one}>
         <div className={s.poster}>
           <img

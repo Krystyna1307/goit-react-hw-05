@@ -1,14 +1,15 @@
 import { Field, Form, Formik } from "formik";
 import { useEffect, useState } from "react";
 import MovieList from "../../components/MovieList/MovieList";
-import { Outlet, useSearchParams } from "react-router-dom";
+import { Outlet, useLocation, useSearchParams } from "react-router-dom";
 import { searchMovies } from "../../services/api";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState("");
-
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  console.log(location);
 
   useEffect(() => {
     const getData = async () => {
