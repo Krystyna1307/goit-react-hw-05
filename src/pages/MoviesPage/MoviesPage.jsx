@@ -1,12 +1,14 @@
 import { Field, Form, Formik } from "formik";
 import { useEffect, useState } from "react";
 import MovieList from "../../components/MovieList/MovieList";
-import { Outlet } from "react-router-dom";
+import { Outlet, useSearchParams } from "react-router-dom";
 import { searchMovies } from "../../services/api";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState("");
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const getData = async () => {
@@ -16,9 +18,14 @@ const MoviesPage = () => {
     getData();
   }, [query]);
 
+  const handleSetQuery = (newValues) => {
+    searchParams.set("query", newValues);
+    setSearchParams(searchParams);
+  };
   const handleSubmit = (values) => {
     if (values.query.trim() !== "" && values.query !== query) {
       setQuery(values.query);
+      handleSetQuery(values.query);
     }
   };
 
