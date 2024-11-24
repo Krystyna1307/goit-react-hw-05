@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../services/api";
+import s from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -25,25 +26,35 @@ const MovieDetailsPage = () => {
   if (!movieDetails) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h1>{movieDetails.title}</h1>
+    <div className={s.wrapper}>
+      <div className={s.part_one}>
+        <div className={s.poster}>
+          <img
+            className={s.img}
+            src={
+              movieDetails.poster_path
+                ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
+                : defaultImg
+            }
+            width={250}
+            alt={`${movieDetails.title} poster`}
+          />
+        </div>
 
-      <img
-        src={
-          movieDetails.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`
-            : defaultImg
-        }
-        width={250}
-        alt={`${movieDetails.title} poster`}
-      />
+        <div className={s.details}>
+          <h1 className={s.title}>{movieDetails.title}</h1>
+          <p className={s.over}>{movieDetails.overview}</p>
+        </div>
+      </div>
 
-      <p>{movieDetails.overview}</p>
-      <nav>
-        <NavLink to="cast">Cast</NavLink>
-        <NavLink to="reviews">Reviews</NavLink>
-      </nav>
-      <Outlet />
+      <div className={s.part_two}>
+        <p>Additional information</p>
+        <nav className={s.nav}>
+          <NavLink to="cast">Cast</NavLink>
+          <NavLink to="reviews">Reviews</NavLink>
+        </nav>
+        <Outlet />
+      </div>
     </div>
   );
 };
