@@ -1,7 +1,9 @@
 .wrapper {
 }
 .part_one {
-  background-color: aqua;
+  display: flex;
+  padding: 0 0 10px 0;
+  border-bottom: 2px solid #ccc; /* Рамка знизу */
 }
 .poster {
 }
@@ -10,14 +12,30 @@
   height: 300px;
 }
 .details {
+  padding: 15px;
 }
 .title {
 }
-
+.userScore {
+}
 .over {
 }
+.genres {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.genre {
+  font-size: 14px;
+}
 .part_two {
-  background-color: bisque;
 }
 .nav {
+  display: flex;
+  flex-direction: column; /* Відображення у стовпчик */
+  gap: 10px; /* Відстань між елементами */
+  margin-top: 10px; /* Відступ зверху */
+  padding: 10px;
+  border-bottom: 2px solid #ccc; /* Рамка знизу */
 }

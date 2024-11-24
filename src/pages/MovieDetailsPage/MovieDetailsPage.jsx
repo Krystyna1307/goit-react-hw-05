@@ -42,8 +42,30 @@ const MovieDetailsPage = () => {
         </div>
 
         <div className={s.details}>
-          <h1 className={s.title}>{movieDetails.title}</h1>
+          <h1 className={s.title}>
+            {movieDetails.title}({movieDetails.release_date.slice(0, 4)})
+          </h1>
+
+          <p className={s.userScore}>
+            User Score:
+            {Math.round(movieDetails.vote_average * 10)}%
+          </p>
+
+          <h3>Overview</h3>
           <p className={s.over}>{movieDetails.overview}</p>
+          <h4>Genres</h4>
+
+          {movieDetails.genres && movieDetails.genres.length > 0 ? (
+            <ul className={s.genres}>
+              {movieDetails.genres.map((genre) => (
+                <li key={genre.id} className={s.genre}>
+                  {genre.name}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No genres available</p>
+          )}
         </div>
       </div>
 
