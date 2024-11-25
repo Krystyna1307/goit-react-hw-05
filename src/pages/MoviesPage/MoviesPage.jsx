@@ -6,12 +6,15 @@ import { searchMovies } from "../../services/api";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   console.log(location);
 
+  const query = searchParams.get("query") ?? "";
+
   useEffect(() => {
+    if (!query) return;
+
     const getData = async () => {
       const data = await searchMovies(query);
       setMovies(data);
@@ -25,7 +28,6 @@ const MoviesPage = () => {
   };
   const handleSubmit = (values) => {
     if (values.query.trim() !== "" && values.query !== query) {
-      setQuery(values.query);
       handleSetQuery(values.query);
     }
   };
