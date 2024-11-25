@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Link,
   NavLink,
@@ -14,6 +14,7 @@ const MovieDetailsPage = () => {
   const [movieDetails, setMovieDetails] = useState(null);
   const location = useLocation();
   console.log(location);
+  const goBackLink = useRef(location.state ?? "/movies");
 
   const defaultImg =
     "https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster";
@@ -35,7 +36,7 @@ const MovieDetailsPage = () => {
 
   return (
     <div className={s.wrapper}>
-      <Link to={location.state}>← Go back</Link>
+      <Link to={goBackLink.current}>← Go back</Link>
 
       <div className={s.part_one}>
         <div className={s.poster}>
