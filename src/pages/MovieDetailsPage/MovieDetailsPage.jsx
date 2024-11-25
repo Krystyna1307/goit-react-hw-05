@@ -13,7 +13,7 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const location = useLocation();
-  console.log(location);
+
   const goBackLink = useRef(location.state ?? "/movies");
 
   const defaultImg =

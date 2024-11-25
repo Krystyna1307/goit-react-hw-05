@@ -8,7 +8,6 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  console.log(location);
 
   const query = searchParams.get("query") ?? "";
 
